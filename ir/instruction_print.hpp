@@ -2,6 +2,7 @@
 
 #include <ir/basic_block.hpp>
 #include <ir/instruction.hpp>
+#include <ir/types/pointer.hpp>
 
 namespace anvil::ir {
 inline void Instruction::printTerminator(std::ostream &os) const {
@@ -75,7 +76,6 @@ inline void Instruction::printOtherOps(std::ostream &os) const {
 
   if (opcode_ == Opcode::Alloca) {
     os << "alloca ";
-    // type_ is ptr-to-T; print T
     if (auto *pt = dynamic_cast<PointerType *>(type_))
       pt->getElementType()->print(os);
     else
@@ -157,7 +157,6 @@ inline void Instruction::printOtherOps(std::ostream &os) const {
     return;
   }
 
-  // Cast ops: trunc, zext, sext, fptrunc, fpext, etc.
   if (operands_.size() == 1) {
     os << opcodeStr() << " ";
     operands_[0]->getType()->print(os);
@@ -167,8 +166,6 @@ inline void Instruction::printOtherOps(std::ostream &os) const {
     type_->print(os);
     return;
   }
-
-  // Binary ops: add, sub, mul, etc.
   if (operands_.size() == 2) {
     os << opcodeStr() << " ";
     operands_[0]->getType()->print(os);
@@ -179,7 +176,6 @@ inline void Instruction::printOtherOps(std::ostream &os) const {
     return;
   }
 
-  // Fallback
   os << opcodeStr() << " ";
   for (size_t i = 0; i < operands_.size(); ++i) {
     if (i > 0)

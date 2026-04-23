@@ -1,5 +1,6 @@
 #pragma once
 
+#include <ir/context.hpp>
 #include <ir/constants/string.hpp>
 #include <ir/function.hpp>
 #include <ir/global.hpp>

@@ -1,7 +1,9 @@
 #pragma once
 
 #include <ir/constants/constant.hpp>
+#include <ir/types/pointer.hpp>
 #include <ir/value.hpp>
+#include <memory>
 
 namespace anvil::ir {
 class GlobalVariable : public Value {

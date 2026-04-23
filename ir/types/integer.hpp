@@ -1,5 +1,5 @@
 #pragma once
-#include <cstdint>
+
 #include <ir/types/type.hpp>
 
 namespace anvil::ir {
